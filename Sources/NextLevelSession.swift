@@ -685,6 +685,8 @@ extension NextLevelSession {
                let clipToRemove = self.clips.last {
                 self.remove(clip: clipToRemove)
                 completion?()
+            } else {
+                completion?()
             }
         }
     }

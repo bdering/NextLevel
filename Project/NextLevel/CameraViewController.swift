@@ -78,10 +78,6 @@ class CameraViewController: UIViewController {
         self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         let screenBounds = UIScreen.main.bounds
-
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
-            print("ping")
-        }
         
         // preview
         self.previewView = UIView(frame: screenBounds)
