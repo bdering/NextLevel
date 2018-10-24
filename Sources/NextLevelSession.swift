@@ -679,11 +679,12 @@ extension NextLevelSession {
     }
 
     /// Removes the last recorded clip for a session, "Undo".
-    public func removeLastClip() {
+    public func removeLastClip(_ completion: (() -> Void)?) {
         self.executeClosureSyncOnSessionQueueIfNecessary {
             if !self._clips.isEmpty,
                let clipToRemove = self.clips.last {
                 self.remove(clip: clipToRemove)
+                completion?()
             }
         }
     }

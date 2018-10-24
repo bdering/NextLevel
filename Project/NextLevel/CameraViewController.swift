@@ -79,6 +79,10 @@ class CameraViewController: UIViewController {
         
         let screenBounds = UIScreen.main.bounds
 
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            print("ping")
+        }
+        
         // preview
         self.previewView = UIView(frame: screenBounds)
         if let previewView = self.previewView {
@@ -173,6 +177,8 @@ class CameraViewController: UIViewController {
         nextLevel.videoConfiguration.maxKeyFrameInterval = 30
         nextLevel.videoConfiguration.scalingMode = AVVideoScalingModeResizeAspectFill
         nextLevel.videoConfiguration.profileLevel = AVVideoProfileLevelH264HighAutoLevel
+        
+        nextLevel.mirroringMode = .auto
 
         // audio configuration
         nextLevel.audioConfiguration.bitRate = 96000
