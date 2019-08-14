@@ -170,9 +170,9 @@ class CameraViewController: UIViewController {
         nextLevel.metadataObjectsDelegate = self
         
         // video configuration
-        nextLevel.videoConfiguration.preset = AVCaptureSession.Preset.hd1280x720
+        nextLevel.videoConfiguration.preset = AVCaptureSession.Preset.iFrame960x540
         nextLevel.videoConfiguration.bitRate = 5500000
-        nextLevel.videoConfiguration.maxKeyFrameInterval = 30
+        nextLevel.videoConfiguration.maxKeyFrameInterval = 20
         nextLevel.videoConfiguration.profileLevel = AVVideoProfileLevelH264HighAutoLevel
 
         // audio configuration
@@ -231,7 +231,6 @@ class CameraViewController: UIViewController {
         
         NextLevel.shared.stop()
     }
-    
 }
 
 // MARK: - library
@@ -659,12 +658,15 @@ extension CameraViewController: NextLevelVideoDelegate {
     }
     
     func nextLevel(_ nextLevel: NextLevel, didSkipVideoPixelBuffer pixelBuffer: CVPixelBuffer, timestamp: TimeInterval, inSession session: NextLevelSession) {
+        print("[Warning]: did skip video pixel buffer.")
     }
     
     func nextLevel(_ nextLevel: NextLevel, didSkipVideoSampleBuffer sampleBuffer: CMSampleBuffer, inSession session: NextLevelSession) {
+        print("[Warning]: did skip video sample buffer.")
     }
     
     func nextLevel(_ nextLevel: NextLevel, didSkipAudioSampleBuffer sampleBuffer: CMSampleBuffer, inSession session: NextLevelSession) {
+        print("[Warning]: did skip audio sample buffer.")
     }
     
     func nextLevel(_ nextLevel: NextLevel, didCompleteSession session: NextLevelSession) {

@@ -251,6 +251,9 @@ extension NextLevelSession {
     ///   - formatDescription: sample buffer format description
     /// - Returns: True when setup completes successfully
     public func setupVideo(withSettings settings: [String : Any]?, configuration: NextLevelVideoConfiguration, formatDescription: CMFormatDescription? = nil) -> Bool {
+        
+        print("Will setup video writer input.")
+        
         if let formatDescription = formatDescription {
             self._videoInput = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: settings, sourceFormatHint: formatDescription)
         } else {
@@ -295,6 +298,9 @@ extension NextLevelSession {
     ///   - formatDescription: sample buffer format description
     /// - Returns: True when setup completes successfully
     public func setupAudio(withSettings settings: [String : Any]?, configuration: NextLevelAudioConfiguration, formatDescription: CMFormatDescription) -> Bool {
+        
+        print("Will setup audio writer input.")
+        
         self._audioInput = AVAssetWriterInput(mediaType: AVMediaType.audio, outputSettings: settings, sourceFormatHint: formatDescription)
         if let audioInput = self._audioInput {
             audioInput.expectsMediaDataInRealTime = true
@@ -385,6 +391,8 @@ extension NextLevelSession {
             frameDuration = scaledDuration
         }
         
+//        print("Video input samplebuffer: \(self._videoInput)")
+        
         if let videoInput = self._videoInput,
             let pixelBufferAdapter = self._pixelBufferAdapter,
             videoInput.isReadyForMoreMediaData {
@@ -423,6 +431,8 @@ extension NextLevelSession {
         
         var frameDuration = minFrameDuration
         let offsetBufferTimestamp = CMTimeSubtract(timestamp, self._timeOffset)
+        
+//        print("Video input pixelbuffer: \(self._videoInput)")
         
         if let timeScale = self._videoConfiguration?.timescale,
             timeScale != 1.0 {

@@ -2704,6 +2704,13 @@ extension NextLevel: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudi
         }
     }
     
+    public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        if let videoOutput = self._videoOutput, videoOutput == output {
+            print("[WARN]: Did drop video sample buffer in captureOutput delegate call.")
+        } else {
+            print("[WARN]: Did drop audio sample buffer in captureOutput delegate call.")
+        }
+    }
 }
 
 // MARK: - AVCaptureFileOutputDelegate
